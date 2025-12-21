@@ -3,41 +3,36 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main extends JFrame {
-    private DefaultListModel<String> listModel;
-    private JList<String> itemList;
-    private JTextField textField;
-    private JButton addButton;
-    private JButton deleteButton;
+    private final DefaultListModel<String> listModel;
+    private final JList<String> itemList;
+    private final JTextField textField;
 
     public Main() {
-        setTitle("Редактор списка");
+        setTitle("Редактор списка - Lab5");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Используем GridBagLayout
-        setLayout(new GridBagLayout());
+        GridBagLayout layout = new GridBagLayout();
+        setLayout(layout);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        // Создаем модель для списка
         listModel = new DefaultListModel<>();
         itemList = new JList<>(listModel);
         JScrollPane scrollPane = new JScrollPane(itemList);
 
-        // Текстовое поле для ввода
         textField = new JTextField(20);
 
-        // Кнопки
-        addButton = new JButton("Добавить");
-        deleteButton = new JButton("Удалить");
-
-        // Располагаем компоненты
+        // Локальные переменные для кнопок
+        JButton addButton = new JButton("Добавить");
+        JButton deleteButton = new JButton("Удалить");
 
         // Текстовое поле
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
         add(textField, gbc);
 
         // Кнопка "Добавить"
@@ -45,6 +40,7 @@ public class Main extends JFrame {
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
+        gbc.weightx = 0.0;
         add(addButton, gbc);
 
         // Кнопка "Удалить"
@@ -52,16 +48,17 @@ public class Main extends JFrame {
         gbc.gridy = 1;
         add(deleteButton, gbc);
 
-        // Список с прокруткой
+        // Список
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         add(scrollPane, gbc);
 
-        // Обработчики событий
+        // Обработчики (можно оставить анонимные классы для совместимости)
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addItem();
