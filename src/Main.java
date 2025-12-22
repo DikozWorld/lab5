@@ -23,11 +23,9 @@ public class Main extends JFrame {
 
         textField = new JTextField(20);
 
-        // Локальные переменные для кнопок
         JButton addButton = new JButton("Добавить");
         JButton deleteButton = new JButton("Удалить");
 
-        // Текстовое поле
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -35,7 +33,6 @@ public class Main extends JFrame {
         gbc.weightx = 1.0;
         add(textField, gbc);
 
-        // Кнопка "Добавить"
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -43,12 +40,10 @@ public class Main extends JFrame {
         gbc.weightx = 0.0;
         add(addButton, gbc);
 
-        // Кнопка "Удалить"
         gbc.gridx = 1;
         gbc.gridy = 1;
         add(deleteButton, gbc);
 
-        // Список
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -58,7 +53,6 @@ public class Main extends JFrame {
         gbc.weighty = 1.0;
         add(scrollPane, gbc);
 
-        // Обработчики (можно оставить анонимные классы для совместимости)
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addItem();
